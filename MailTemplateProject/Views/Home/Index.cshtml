@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Mail To";
+}
+<style>
+    textarea {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+    }
+</style>
+
+
+
+<form name="frmMail" id="frmMail">
+    <div class="form-horizontal">
+
+        <hr />
+        <h1>Html Template Send Mail</h1>
+        <hr />
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Konu">Konu</label>
+            <div class="col-md-10">
+                <input required id="Konu" name="Konu" placeholder="Konu" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="KimdenMail">Gönderen Maili</label>
+            <div class="col-md-10">
+                <input required id="KimdenMail" name="KimdenMail" placeholder="Gönderen Maili" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="KimdenText">Gönderen Önizleme Yazısı</label>
+            <div class="col-md-10">
+                <input required id="KimdenText" name="KimdenText" placeholder="Gönderen Önizleme Yazısı" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Alicilar">Alicilar</label>
+            <div class="col-md-10">
+                <input required id="Alicilar" name="Alicilar" placeholder="Alicilar" class="form-control" type="text">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Html Template">Html Template</label>
+            <div class="col-md-10">
+                <textarea required name="Icerik" id="Icerik" rows="20" placeholder="Html Template" class="form-control"> </textarea>
+            </div>
+        </div>
+
+
+
+        <hr />
+
+        <input type="submit" value="Mail Gönder" class="btn blue btn-outline sbold " />
+
+
+    </div>
+
+</form>
+
+
+<script>
+
+    $(function () {
+
+        CKEDITOR.replace('Icerik');
+
+        //$('#Alicilar').multiple_emails();
+
+        $('#frmMail').submit(function (e) {
+            e.preventDefault();
+            $('#frmMail').LoadingOverlay("show");
+
+            var postModel = $.fn.toForm("#frmMail");
+            var alicilar = postModel.Alicilar.split(',');
+            postModel.Alicilar = alicilar;
+
+
+            $.ajx('/home/setSendMail', { postModel: postModel }, function (dataResult) {
+
+                $('#frmMail').LoadingOverlay("hide");
+                alert(dataResult);
+
+
+            });
+        });
+
+
+
+
+    });
+
+
+</script>
