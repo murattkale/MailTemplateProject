@@ -17,7 +17,7 @@ namespace MailTemplateProject.Controllers
 
         public JsonResult setSendMail(MailModel postModel)
         {
-            postModel.Icerik = Server.HtmlDecode(postModel.Icerik);
+            //postModel.Icerik = Server.HtmlDecode(postModel.Icerik);
             var islem = SendMail.Send(postModel);
 
             return Json(islem);
