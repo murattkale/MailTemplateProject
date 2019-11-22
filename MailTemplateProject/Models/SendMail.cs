@@ -17,6 +17,7 @@ public class MailModel
     [AllowHtml]
     public string Icerik { get; set; }
     public string[] Alicilar { get; set; }
+    public string[] cc { get; set; }
 
 }
 public static class SendMail
@@ -35,6 +36,11 @@ public static class SendMail
             //mail kimden geliyor, hangi ifNamee görünsün?
             mail.From = new MailAddress(postModel.KimdenMail, postModel.KimdenText, System.Text.Encoding.UTF8);
             mail.Subject = postModel.Konu;//mailin konusu
+
+            foreach (var item in postModel.cc)
+            {
+                mail.CC.Add(item); //CC.
+            }
 
 
             //mailin içeriği.. Bu alan isteğe göre genişletilip daraltılabilir.
