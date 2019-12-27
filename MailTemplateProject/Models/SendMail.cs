@@ -49,7 +49,7 @@ public static class SendMail
             SmtpClient smp = new SmtpClient();
 
             //mailin gönderileceği Nameres ve şifresi
-            smp.Credentials = new NetworkCredential("murat.kale3993@gmail.com", "mrt399111");
+            smp.Credentials = new NetworkCredential("zondigitaldev@gmail.com", "123_*1Zon");
             smp.Port = 587;
             smp.Host = "smtp.gmail.com";//gmail üzerinden gönderiliyor.
             smp.EnableSsl = true;
@@ -58,7 +58,7 @@ public static class SendMail
         }
         catch (Exception ex)
         {
-            return "Error: " + ex.InnerException;
+            return "Error: " + ex.Message;
         }
 
         return "Mail Gönderildi";
