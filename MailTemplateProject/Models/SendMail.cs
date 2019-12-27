@@ -46,7 +46,7 @@ public static class SendMail
             //mailin içeriği.. Bu alan isteğe göre genişletilip daraltılabilir.
             mail.Body = postModel.Icerik;
             mail.IsBodyHtml = true;
-            SmtpClient smp = new SmtpClient();
+            SmtpClient smp = new SmtpClient(); 
 
             //mailin gönderileceği Nameres ve şifresi
             smp.Credentials = new NetworkCredential("zondigitaldev@gmail.com", "123_*1Zon");
